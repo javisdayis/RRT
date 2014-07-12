@@ -18,7 +18,7 @@ live on CRAN, and add point in time capabilities allowing more precision for rep
 
 ### <a href="#indetail" name="indetail">#</a> In detail - MRAN (Modern R Archive Network)
 MRAN is downstream snapshot of CRAN. The main differentiation of MRAN to CRAN
-is that MRAN consists of a series of snapshots that are taken every 12 hours 
+is that MRAN consists of a series of snapshots that are taken once a day 
 using a script that points to the master CRAN server in Vienna, Austria.
 Authors of R packages that are hosted on CRAN are likely to update their packages at any point in time.
 That is great as it keeps the ecosystem fresh and ensures that bug fixes are available. MRAN snapshots
