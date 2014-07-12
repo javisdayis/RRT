@@ -16,7 +16,7 @@ RRT package.
 The goal of MRAN is to better organize the various places that R packages
 live on CRAN, and add point in time capabilities allowing more precision for reproducibility.
 
-### <a href="#indetail" name="indetail">#</a> In detail - MRAN (Marmoset R Archive Network)
+### <a href="#indetail" name="indetail">#</a> In detail - MRAN (Modern R Archive Network)
 MRAN is downstream snapshot of CRAN. The main differentiation of MRAN to CRAN
 is that MRAN consists of a series of snapshots that are taken every 12 hours 
 using a script that points to the master CRAN server in Vienna, Austria.
