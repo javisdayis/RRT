@@ -40,8 +40,9 @@
               <a href="http://revolutionanalytics.github.io/RRT/tutorial">Tutorial</a><br>
               <a href="http://revolutionanalytics.github.io/RRT/mran">MRAN</a><br>
               <a href="https://github.com/RevolutionAnalytics/RRT/issues">Issue Tracker</a><br>
+              <a href="https://github.com/RevolutionAnalytics/RRT/issues/new">Report a bug/Feature request</a><br>
               <a href="https://github.com/RevolutionAnalytics/RRT">Source Code</a><br>
-              <a href="https://github.com/RevolutionAnalytics/RRT/archive/v0.1.0.zip">Download (v0.1)</a>
+              <a href="https://github.com/RevolutionAnalytics/RRT/archive/v0.1.0.zip">Download (v0.2)</a>
             </li>
           </ul>
           <!-- hyde theme from <a href="https://github.com/mdo/hyde">Hyde</a> from <a href="https://twitter.com/mdo" target="_blank">@mdo</a>-->
@@ -69,18 +70,18 @@ RRT package.
 The goal of MRAN is to better organize the various places that R packages
 live on CRAN, and add point in time capabilities allowing more precision for reproducibility.</p>
 
-<h3><a href="#indetail" name="indetail">#</a> In detail - MRAN (Marmoset R Archive Network)</h3>
+<h3><a href="#indetail" name="indetail">#</a> In detail - MRAN (Modern R Archive Network)</h3>
 
 <p>MRAN is downstream snapshot of CRAN. The main differentiation of MRAN to CRAN
-is that MRAN consists of a series of snapshots that are taken every three
-hours using a script that points to the master CRAN server in Vienna, Austria.
+is that MRAN consists of a series of snapshots that are taken once a day
+using a script that points to the master CRAN server in Vienna, Austria.
 Authors of R packages that are hosted on CRAN are likely to update their packages at any point in time.
 That is great as it keeps the ecosystem fresh and ensures that bug fixes are available. MRAN snapshots
 combined with the RRT front end are in essence a trace back mechanism so R users will have a way to go
 back to the version of a package that they were working on at a point in time.
 Each MRAN snapshot holds all source versions of a package in the same
 per-package directory on the MRAN server.<br/>
-i.e. <a href="http://mran.revolutionanalytics.com/snapshots/2014-06-26_1400/zoo">http://mran.revolutionanalytics.com/snapshots/2014-06-26_1400/zoo</a></p>
+i.e. <a href="http://mran.revolutionanalytics.com/snapshots/src/2014-06-26_1400/zoo">http://mran.revolutionanalytics.com/snapshots/src/2014-06-26_1400/zoo</a></p>
 
 <h3><a href="#snapshots" name="snapshots">#</a> How are snapshots created?</h3>
 

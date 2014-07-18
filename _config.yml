@@ -8,7 +8,7 @@ author:
   name:       'Scott Chamberlain'
   email:      'myrmecocystus@gmail.com'
 markdown:     rdiscount
-highlighter:      pygments
+highlighter:  pygments
 paginate:     3
-version:      0.1
+version:      0.2
 exclude:      ['*.Rmd']

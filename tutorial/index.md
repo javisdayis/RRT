@@ -27,23 +27,11 @@ On Linux, get xml C library first (on the command line)
 
 You may need libcurl too. Do report in the issues tab if you run into this problem.
 
-Get dependency `miniCRAN` that is not on CRAN
-
 In an `R` session
 
 ```r
 install.packages("devtools")
 library("devtools")
-```
-
-```r
-devtools::install_github("andrie/miniCRAN")
-```
-
-_Optionally_, install `git2r` to use git from within R. `git2r` is in Enhances in `RRT`, so you don't need it to install `RRT`
-
-```r
-devtools::install_github("ropensci/git2r")
 ```
 
 Then install `RRT`
@@ -58,7 +46,7 @@ library("RRT")
 #### <a href="#nouserinput" name="nouserinput">#</a> Create a repo without user input
 
 ```r
-rrt_init("~/mynewrepository")
+checkpoint("2014-07-11", "~/mynewrepository")
 ```
 
 ```r
@@ -78,7 +66,7 @@ You should now have a RRT repository
 This process will ask you questions
 
 ```r
-rrt_init(interactive=TRUE)
+checkpoint("2014-07-11", interactive=TRUE)
 ```
 
 ```r
@@ -116,70 +104,40 @@ Writing repository manifest...
 
 ### <a href="#refresh" name="refresh">#</a> Refresh repository
 
-`rrt_refresh()` is used to update the packages installed locally in your repository by looking through the repository files again for new packages.
-After we initiated a new repo above with `rrt_init()` we may add some code in a `code.R` file.
-Then we want to update the packages in the repo, which can be done with `rrt_refresh()`.
+To make `RRT` as simple as possible, there is a function called `rrt_refresh()`, used to update the packages installed locally in your repository by looking through the repository files again for new packages. However, you only need to run `checkpoint()` again, as we know you already have an `RRT` repository, so we run `rrt_refresh()` instead of `rrt_init()`. After we initiated a new repo above with `rrt_init()` we may add some code in a `code.R` file. Then we want to update the packages in the repo, which can be done with `checkpoint()`. Note that we don't have to pass in the repo path (unless your current working directory isn't the folder in question) or the `snapshotdate` parameter.
 
 ```r
-rrt_refresh("~/mynewrepository")
-```
-
-```r
-Checking to make sure repository exists...
-Checing to make sure rrt directory exists inside your repository...
-rrt directory already exists
-Looking for packages used in your repository...
-Getting new packages...
-        snapshots
-1 2014-06-30_0200
-2 2014-06-30_0500
-3 2014-06-30_0800
-4 2014-06-30_1100
-5 2014-06-30_1400
-6 2014-06-30_1700
-7 2014-06-30_2000
-
-More than one snapshot matching your date found
-Enter rownumber of snapshot (other inputs will return 'NA'):
-
-1: 7
-receiving file list ...
-4 files to consider
-stringr/
-stringr/stringr_0.6.2.tar.gz
-       20636 100%    2.46MB/s    0:00:00 (xfer#1, to-check=2/4)
-testthat/
-testthat/testthat_0.8.1.tar.gz
-       40777 100%    4.86MB/s    0:00:00 (xfer#2, to-check=0/4)
-
-sent 133 bytes  received 61662 bytes  41196.67 bytes/sec
-total size is 61413  speedup is 0.99
-Writing repository manifest...
-/Users/sacmac/.rrt/www/rrt.html
-
->>> RRT refresh completed.
-```
-
-As you can see `rrt_refresh()` scans the repo for new packages used, downloads them if any new ones, and updates the manifest file.
-
-### <a href="#installpkgs" name="installpkgs">#</a> Install packages
-
-`rrt_init()` and `rrt_refresh()` do not install any packages. Packages are downloaded, but not installed yet. The installation process is separate on purpose, but if needed could become part of the initialization and/or refresh functions.
-
-`rrt_install()` installs packages into the repository itself
-
-```r
-rrt_install("~/mynewrepository")
+checkpoint()
 ```
 
 ```r
 Checking to make sure repository exists...
 Checking to make sure rrt directory exists inside your repository...
 Looking for packages used in your repository...
-Installing packages...
+Getting new packages...
+Creating new folders: ~/mynewrepository/rrt/lib/x86_64-apple-darwin13.1.0/3.1.0/src/contrib
+trying URL 'http://cran.r-project.org/src/contrib/plyr_1.8.1.tar.gz'
+Content type 'application/x-gzip' length 393233 bytes (384 Kb)
+opened URL
+==================================================
+downloaded 384 Kb
 
-...cutoff
+trying URL 'http://cran.r-project.org/src/contrib/Rcpp_0.11.2.tar.gz'
+Content type 'application/x-gzip' length 2004313 bytes (1.9 Mb)
+opened URL
+==================================================
+downloaded 1.9 Mb
+
+Writing repository manifest...
+
+>>> RRT refresh completed.
 ```
+
+As you can see `checkpoint()` scans the repo for new packages used, downloads them if any new ones, and updates the manifest file.
+
+### <a href="#installpkgs" name="installpkgs">#</a> Install packages
+
+In addition to downloading packages, `checkpoint()` installs any packages that are downloaded, but not yet installed. The package download and installation steps are separate, but we do them all in one step with the `checkpoint()` function so you don't have to worry about it.
 
 ### <a href="#compatibility" name="compatibility">#</a> Package compatibility check
 
@@ -262,39 +220,78 @@ If you start R from a RRT repository R will use the repository specific `.Rprofi
 Note: this doesn't install them, only downloads them.
 
 ```r
-pkgs_marmoset(pkgs=c("plyr","ggplot2"), outdir="~/marmoset_snaps/stuff/")
+pkgs_mran(pkgs = c("plyr","ggplot2","dplyr","taxize"), outdir = "~/mypkgs")
 ```
-
-Snapshots are done a number of times each day, so a date input is used to check what snapshots are available for that date. If there is more than one, the options are listed, and you press the number of the row that corresponds to the snapshot you want to use. Then `rsync` is used to download the package(s) to the directory you specify in the `outdir` parameter. Currently, you have to specify package and version number as `package_ver`.
 
 ```r
-        snapshots
-1 2014-06-19_0053
-2 2014-06-19_0103
-3 2014-06-19_0111
-4 2014-06-19_0126
-5 2014-06-19_0136
-6 2014-06-19_0802
-7 2014-06-19_0817
-8 2014-06-19_1100
-9 2014-06-19_1400
-
-More than one snapshot matching your date found
-Enter rownumber of snapshot (other inputs will return 'NA'):
-
-1: 9
-receiving file list ...
-4 files to consider
-ggplot2/
-ggplot2/ggplot2_1.0.0.tar.gz
-       2.35M 100%    2.07MB/s    0:00:01 (xfer#1, to-check=2/4)
-plyr/
-plyr/plyr_1.8.1.tar.gz
-     393.23K 100%    1.99MB/s    0:00:00 (xfer#2, to-check=0/4)
-
-sent 125 bytes  received 2.75M bytes  1.10M bytes/sec
-total size is 2.74M  speedup is 1.00
+... Downloading package files
 ```
+
+Which results in the following files in the directory `mypkgs`:
+
+```
+dplyr_0.2.tar.gz
+ggplot2_1.0.0.tar.gz
+plyr_1.8.1.tar.gz
+taxize_0.3.0.tar.gz
+```
+
+You can also install from MRAN using a more traditional approach using `install.packages()`
+
+```r
+install.packages("http://mran.revolutionanalytics.com/snapshots/src/2014-07-18_0500/stringr/stringr_0.6.2.tar.gz", repos = NULL, type="source")
+```
+
+```r
+Installing package into ‘/Users/sacmac/Library/R/3.1/library’
+(as ‘lib’ is unspecified)
+trying URL 'http://mran.revolutionanalytics.com/snapshots/src/2014-07-18_0500/stringr/stringr_0.6.2.tar.gz'
+Content type 'application/octet-stream' length 20636 bytes (20 Kb)
+opened URL
+==================================================
+downloaded 20 Kb
+
+* installing *source* package ‘stringr’ ...
+** package ‘stringr’ successfully unpacked and MD5 sums checked
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (stringr)
+```
+
+Or just download using `download.packages()`
+
+```r
+download.file("http://mran.revolutionanalytics.com/snapshots/src/2014-07-18_0500/stringr/stringr_0.6.2.tar.gz", destfile = 'stringr_0.6.2.tar.gz')
+```
+
+```r
+trying URL 'http://mran.revolutionanalytics.com/snapshots/src/2014-07-18_0500/stringr/stringr_0.6.2.tar.gz'
+Content type 'application/octet-stream' length 20636 bytes (20 Kb)
+opened URL
+==================================================
+downloaded 20 Kb
+```
+
+You can also get binaries from MRAN:
+
+Download:
+
+```r
+download.file("http://mran.revolutionanalytics.com/snapshots/bin/macosx/2014-07-15_0043/stringr_0.6.2.tgz", destfile = "stringr_0.6.2.tgz")
+```
+
+Install
+
+```r
+install.packages("http://mran.revolutionanalytics.com/snapshots/bin/macosx/2014-07-15_0043/stringr_0.6.2.tgz", repos=NULL)
+```
+
+Note that MRAN is not a "CRAN-like" repository so you can't just use `install.packages()` as you normally would like `install.packages("stringr")`. 
 
 ### <a href="#clean" name="clean">#</a> Clean
 

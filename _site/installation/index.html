@@ -40,8 +40,9 @@
               <a href="http://revolutionanalytics.github.io/RRT/tutorial">Tutorial</a><br>
               <a href="http://revolutionanalytics.github.io/RRT/mran">MRAN</a><br>
               <a href="https://github.com/RevolutionAnalytics/RRT/issues">Issue Tracker</a><br>
+              <a href="https://github.com/RevolutionAnalytics/RRT/issues/new">Report a bug/Feature request</a><br>
               <a href="https://github.com/RevolutionAnalytics/RRT">Source Code</a><br>
-              <a href="https://github.com/RevolutionAnalytics/RRT/archive/v0.1.0.zip">Download (v0.1)</a>
+              <a href="https://github.com/RevolutionAnalytics/RRT/archive/v0.1.0.zip">Download (v0.2)</a>
             </li>
           </ul>
           <!-- hyde theme from <a href="https://github.com/mdo/hyde">Hyde</a> from <a href="https://twitter.com/mdo" target="_blank">@mdo</a>-->
@@ -53,10 +54,9 @@
       <div class="page">
   <h1 class="page-title">RRT Installation</h1>
   <ul>
-<li><a href="#Ubuntu%20Linux">Ubuntu Linux</a></li>
-<li><a href="#Mac%20OS%20X">Mac OS X</a></li>
+<li><a href="#linux">Ubuntu Linux</a></li>
+<li><a href="#osx">Mac OS X</a></li>
 <li><a href="#windows">Windows</a></li>
-<li>optional <a href="#git%20integration">git integration</a></li>
 </ul>
 
 
@@ -72,9 +72,9 @@ Ubuntu users can</p>
 <pre><code class="coffee">brew update ; brew tap homebrew/science ; brew install R
 </code></pre>
 
-<p><strong>RRT Installation by operating system</strong></p>
+<h3>RRT Installation by operating system</h3>
 
-<h3>Ubuntu Linux</h3>
+<h4><a href="#linux" name="linux">#</a>  Ubuntu Linux</h4>
 
 <p>On Ubuntu Linux, you may need to install two system dependencies:<br/>
 -XML C library<br/>
@@ -83,15 +83,10 @@ Ubuntu users can</p>
 <pre><code class="coffee">apt-get install r-cran-xml libcurl-dev
 </code></pre>
 
-<p>Get dependency <code>miniCRAN</code> that is not on CRAN</p>
-
 <p>In an <code>R</code> session</p>
 
 <pre><code class="coffee">install.packages("devtools")
 library("devtools")
-</code></pre>
-
-<pre><code class="coffee">install_github("andrie/miniCRAN")
 </code></pre>
 
 <p>Then install <code>RRT</code></p>
@@ -100,26 +95,21 @@ library("devtools")
 library("RRT")
 </code></pre>
 
-<p>RRT has been tested on Ubuntu 14.04.<br/>
+<p><code>RRT</code> has been tested on Ubuntu 14.04.<br/>
 Please create a brief item in the <a href="https://github.com/RevolutionAnalytics/RRT/issues">RRT issue tracker</a>
 if you run into issues with system dependencies or general install issues.</p>
 
-<h3>Mac OS X</h3>
+<h4><a href="#osx" name="osx">#</a> Mac OS X</h4>
 
 <p>XML and curl C libraries should be installed by default on your machine.
 RRT has been tested on Mac OS X Mavericks.<br/>
 Please create a brief item in the <a href="https://github.com/RevolutionAnalytics/RRT/issues">RRT issue tracker</a>
 if you run into issues on other versions of Mac OS X and system dependencies.</p>
 
-<p>Get dependency <code>miniCRAN</code> that is not on CRAN</p>
-
 <p>In an <code>R</code> session</p>
 
 <pre><code class="coffee">install.packages("devtools")
 library("devtools")
-</code></pre>
-
-<pre><code class="coffee">install_github("andrie/miniCRAN")
 </code></pre>
 
 <p>Then install <code>RRT</code></p>
@@ -128,35 +118,18 @@ library("devtools")
 library("RRT")
 </code></pre>
 
-<h3>Windows</h3>
+<h4><a href="#windows" name="windows">#</a>  Windows</h4>
 
 <ul>
 <li>Install <a href="http://cran.r-project.org/bin/windows/Rtools/">Rtools</a></li>
-<li>Install the <a href="https://github.com/hadley/devtools">devtools R package</a>. You can install from source,
-or just install via <code>install.packages("devtools")</code>, or choose devtools from the R GUI.</li>
-<li>Install <code>miniCRAN</code></li>
-</ul>
-
-
-<pre><code class="coffee">install_github("andrie/miniCRAN")
-</code></pre>
-
-<ul>
-<li>Then install <code>RRT</code></li>
+<li><p>Install the <a href="https://github.com/hadley/devtools">devtools R package</a>. You can install from source,
+or just install via <code>install.packages("devtools")</code>, or choose devtools from the R GUI.</p></li>
+<li><p>Then install <code>RRT</code></p></li>
 </ul>
 
 
 <pre><code class="coffee">install_github("RevolutionAnalytics/RRT")
 library("RRT")
-</code></pre>
-
-<h3>git integration</h3>
-
-<p><em>Optionally</em>, install <code>git2r</code> to use git capabilities from within R / RRT. <code>git2r</code> is an enhancement in <code>RRT</code>,
-so you do not need git2r to install <code>RRT</code>. RRT users are encouraged to try the git integration features of RRT
-to simplify sharing R code repositories with other R users.</p>
-
-<pre><code class="coffee">install_github("ropensci/git2r")
 </code></pre>
 
 </div>
