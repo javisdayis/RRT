@@ -1,3 +1,0 @@
-## RRT - Reproducible R Toolkit
-
-gh-pages code...
