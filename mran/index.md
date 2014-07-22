@@ -47,7 +47,7 @@ Note that backend processes work on the "live" file system, so for reproducabili
 points to a MRAN snapshot. A RRT user never see's the "live" file system.
 A current overview of space usage on the current MRAN server can be found at:  
 <br/>
-[http://mran.revolutionanalytics.com/accounting.txt](http://mran.revolutionanalytics.com/accounting.txt)  
+[http://mran.revolutionanalytics.com/accounting.txt](http://mran.revolutionanalytics.com/accounting/)  
 <br/>
 All MRAN snapshots are exposed at:  
 [http://mran.revolutionanalytics.com/snapshots/](http://mran.revolutionanalytics.com/snapshots/)
